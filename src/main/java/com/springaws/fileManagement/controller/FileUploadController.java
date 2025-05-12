@@ -1,6 +1,7 @@
 package com.springaws.fileManagement.controller;
 
 
+import com.springaws.fileManagement.model.ServiceRequest;
 import com.springaws.fileManagement.service.S3Service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,12 @@ public class FileUploadController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam String fileName, @RequestParam String content) {
+    //public ResponseEntity<String> uploadFile(@RequestParam String fileName, @RequestParam String content) {
+    public ResponseEntity<String> uploadFile(@RequestBody ServiceRequest request) {
+
         //@RequestParam("file") MultipartFile file
+        String fileName = request.getFileName();
+        String content = request.getFileName();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = now.format(formatter);
