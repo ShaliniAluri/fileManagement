@@ -22,18 +22,19 @@ public class FileUploadController {
 
     @PostMapping("/upload")
     //public ResponseEntity<String> uploadFile(@RequestParam String fileName, @RequestParam String content) {
-    public ResponseEntity<String> uploadFile(@RequestBody ServiceRequest request) {
+    //public ResponseEntity<String> uploadFile(@RequestBody ServiceRequest request) {
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
 
         //@RequestParam("file") MultipartFile file
-        String fileName = request.getFileName();
+       /* String fileName = request.getFileName();
         String content = request.getFileName();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = now.format(formatter);
-        fileName = fileName+"_"+formattedDateTime;
+        fileName = fileName+"_"+formattedDateTime;*/
 
         try {
-            fileName = s3Service.uploadFile(fileName, content);
+            String fileName = s3Service.uploadFile(file);
             return ResponseEntity.ok("File uploaded: " + fileName);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Upload failed: " + e.getMessage());

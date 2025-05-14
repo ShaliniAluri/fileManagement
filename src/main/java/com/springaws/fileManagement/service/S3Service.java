@@ -30,10 +30,10 @@ public class S3Service {
         this.s3Client = s3Client;
     }
 
-    //public String uploadFile(MultipartFile file) throws IOException {
-    public String uploadFile(String filename, String content) throws IOException {
+    public String uploadFile(MultipartFile file) throws IOException {
+    //public String uploadFile(String filename, String content) throws IOException {
 
-       /* String uniqueFileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+        String uniqueFileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
@@ -42,17 +42,17 @@ public class S3Service {
                 .build();
 
         s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
-        */
 
-        s3Client.putObject(
+
+      /*  s3Client.putObject(
                 PutObjectRequest.builder()
                         .bucket(bucketName)
                         .key(filename)
                         .contentType("text/plain")
                         .build(),
                 RequestBody.fromString(content)
-        );
-        return filename;
+        );*/
+        return uniqueFileName;
     }
 
     public List<String> getFileName(Duration duration) {
